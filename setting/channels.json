@@ -1,3 +1,38 @@
 {
-    "index": {}
+    "index": {
+        "849602955997216788": {
+            "log": {
+                "id": null,
+                "message": "{now} Bot is Ready",
+                "used": false
+            },
+            "member_join": {
+                "id": null,
+                "message": "{mmention} Join {guildname}",
+                "used": false
+            },
+            "member_remove": {
+                "id": null,
+                "message": "{mmention} leave {guildname}",
+                "used": false
+            }
+        },
+        "849670920553365584": {
+            "log": {
+                "id": null,
+                "message": "{now} Bot is Ready",
+                "used": false
+            },
+            "member_join": {
+                "id": "849674564475682897",
+                "message": "{mmention} Join {guildname}",
+                "used": true
+            },
+            "member_remove": {
+                "id": "849674680524472381",
+                "message": "{mmention} leave {guildname}",
+                "used": true
+            }
+        }
+    }
 }

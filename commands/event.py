@@ -4,7 +4,7 @@ from discord.ext import commands
 from core.classes import Cog_Extension
 from datetime import datetime
 
-with open(',/setting/channels.json', mode='r', encoding='utf8') as cFile:
+with open('./setting/channels.json', mode='r', encoding='utf8') as cFile:
     cData = json.load(cFile)
 
 def timestamp():
@@ -12,6 +12,10 @@ def timestamp():
 
 def JLmessage(string:str, member):
     return string.format(mmention=member.mention, guildname=member.guild.name)
+
+def save(jsonName, data:dict):
+    with open(f'./setting/{jsonName}.json', mode='r', encoding='utf8') as File:
+        json.dump(data, File, sort_keys=True, indent=4, ensure_ascii=False)
 
 class event(Cog_Extension):
     @commands.is_owner()
@@ -23,21 +27,21 @@ class event(Cog_Extension):
     async def on_ready(self):
         print(f'{timestamp()} Bot is Ready')
         for guild in self.bot.guilds:
-            if cData[str(guild.id)]['log']['used']:
+            if cData['index'][str(guild.id)]['log']['used']:
                 channel = self.bot.get_channel(cData[str(guild.id)]['log']['id'])
                 await channel.send()
     
     @commands.Cog.listener()
     async def on_member_join(self, member):
         print(f'{timestamp()} {member}( {member.id} ) join {member.guild}( {member.guild.id} )')
-        if cData[str(member.guild.id)]['member_join']['used']:
+        if cData['index'][str(member.guild.id)]['member_join']['used']:
             channel = self.bot.get_channel(cData[str(member.guild.id)]['member_join']['id'])
             await channel.send(JLmessage(cData[str(member.guild.id)]['member_join']['message']))
     
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         print(f'{timestamp()} {member}( {member.id} ) leave {member.guild}( {member.guild.id} )')
-        if cData[str(member.guild.id)]['member_remove']['used']:
+        if cData['index'][str(member.guild.id)]['member_remove']['used']:
             channel = self.bot.get_channel(cData[str(member.guild.id)]['member_remove']['id'])
             await channel.send(JLmessage(cData[str(member.guild.id)]['member_join']['message']))
     
@@ -49,6 +53,7 @@ class event(Cog_Extension):
             'member_remove': {'id': None, 'message': '{mmention} leave {guildname}', 'used': False}, 
             'log': {'id': None, 'message': '{now} Bot is Ready', 'used': False}
             }
+        save(jsonName='channel', data=cData)
 
 
 def setup(bot):
