@@ -3,7 +3,6 @@ import random
 from discord.ext import commands
 from discord import User
 from core.classes import Cog_Extension
-from datetime import datetime
 
 def randomInt(min, max):
     return random.randint(min, max)
@@ -40,6 +39,24 @@ class funny(Cog_Extension):
             return
         point = [random.randint(1, 6) for i in range(int(times))]
         await ctx.send(f'你丟出了`{times}`顆骰子，分別是\n> `{", ".join([str(i) for i in point])}`\n共計`{sum(point)}`點')
+    
+    @commands.group()
+    async def me(self, ctx):
+        pass
+
+    @me.command()
+    async def avatar(self, ctx, member:User=None):
+        if not member:
+            await ctx.send(ctx.author.avatar_url)
+            return
+        await ctx.send(member.avatar_url)
+    
+    @me.command()
+    async def id(self, ctx, member:User=None):
+        if not member:
+            await ctx.send(ctx.author.id)
+            return
+        await ctx.send(member.id)
 
 def setup(bot):
     bot.add_cog(funny(bot))

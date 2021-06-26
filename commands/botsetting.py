@@ -2,15 +2,7 @@ import discord
 import json
 from discord.ext import commands
 from core.classes import Cog_Extension
-from datetime import datetime
-
-def timestamp():
-    return f"[{datetime.now().strftime('%Y/%m/%d %H:%M:%S')}]"
-
-def round(num:int):
-    if num % 1 >= 0.5:
-        return int(num//1+1)
-    return int(num)
+from plugin.MUT import MUT
 
 def save(jsonName, data:dict):
     with open(f'./setting/{jsonName}.json', mode='w', encoding='utf8') as File:
@@ -27,9 +19,21 @@ class botsetting(Cog_Extension):
             with open('./setting/channels.json', mode='r', encoding='utf8') as cFile:
                 cData = json.load(cFile)
             cData['index'][str(ctx.guild.id)] = {
-                'member_join': {'id': None, 'message': '{mmention} Join {guildname}', 'used': False}, 
-                'member_remove': {'id': None, 'message': '{mmention} leave {guildname}', 'used': False}, 
-                'log': {'id': None, 'message': '{now} Bot is Ready', 'used': False}
+                'member_join': {
+                    'id': None, 
+                    'message': '{mmention} Join {guildname}', 
+                    'used': False
+                    }, 
+                'member_remove': {
+                    'id': None, 
+                    'message': '{mmention} leave {guildname}', 
+                    'used': False
+                    }, 
+                'log': {
+                    'id': None, 
+                    'message': '{now} Bot is Ready', 
+                    'used': False
+                    }
                 }
             save(jsonName='channels', data=cData)
         elif setupType == 'role':
