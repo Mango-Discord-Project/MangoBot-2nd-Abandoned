@@ -3,8 +3,7 @@ from discord.ext import commands
 from core.classes import Cog_Extension
 from datetime import datetime
 
-def timestamp():
-    return f"[{datetime.now().strftime('%Y/%m/%d %H:%M:%S')}]"
+def timestamp(): return f"[{datetime.now().strftime('%Y/%m/%d %H:%M:%S')}]"
 
 def round(num:int):
     if num % 1 >= 0.5:

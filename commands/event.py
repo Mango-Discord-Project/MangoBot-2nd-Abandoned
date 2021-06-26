@@ -54,6 +54,10 @@ class event(Cog_Extension):
             'log': {'id': None, 'message': '{now} Bot is Ready', 'used': False}
             }
         save(jsonName='channel', data=cData)
+    
+    @commands.Cog.listener()
+    async def on_invite_delete(self, invite):
+        pass
 
 
 def setup(bot):
