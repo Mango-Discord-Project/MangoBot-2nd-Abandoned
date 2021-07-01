@@ -1,4 +1,6 @@
 {
     "BotName": "Mango Bot",
-    "Prefix": "m."
+    "Prefix": [
+        "m.", "m+"
+    ]
 }

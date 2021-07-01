@@ -16,10 +16,10 @@ class funny(Cog_Extension):
     @random.command()
     async def love(self, ctx, member:User=None):
         if not member:
-            await ctx.send('請輸入戀愛相性對象')
+            await ctx.send('Please enter a love match')
             return
         if member.id == ctx.author.id:
-            await ctx.send('~~不要這麼自戀好嗎?~~')
+            await ctx.send('~~Don\'t be so self-absorbed, okay??~~')
             return
         await ctx.send(f'{ctx.author.mention} 與 {member.mention} 的相性為 {randomInt(0, 100)}')
     
@@ -32,31 +32,30 @@ class funny(Cog_Extension):
     @random.command()
     async def dice(self, ctx, times:str='1'):
         if not times.isdigit():
-            await ctx.send('請輸入正確的數字')
+            await ctx.send('Please enter the correct number')
             return
         if int(times) > 10:
-            await ctx.send('一次最多能擲10顆骰子')
+            await ctx.send('Up to 10 dice can be rolled at a time')
             return
         point = [random.randint(1, 6) for i in range(int(times))]
-        await ctx.send(f'你丟出了`{times}`顆骰子，分別是\n> `{", ".join([str(i) for i in point])}`\n共計`{sum(point)}`點')
+        await ctx.send(f'You have rolled `{times}` dice, which are\n> `{", ".join([str(i) for i in point])}`\nTotal `{sum(point)}` points')
     
     @commands.group()
     async def me(self, ctx):
         pass
 
     @me.command()
-    async def avatar(self, ctx, member:User=None):
-        if not member:
-            await ctx.send(ctx.author.avatar_url)
-            return
-        await ctx.send(member.avatar_url)
+    async def avatar(self, ctx, member:discord.User=None):
+        member = member or ctx.author
+        avatar_url = member.avatar_url
+        embed = discord.Embed(title=f'{str(member)}\'s Avatar', description=f'URL：[>> Click Me <<]({avatar_url})')
+        embed.set_image(url=avatar_url)
+        await ctx.send(embed=embed)
     
     @me.command()
     async def id(self, ctx, member:User=None):
-        if not member:
-            await ctx.send(ctx.author.id)
-            return
-        await ctx.send(member.id)
+        member = member or ctx.author
+        await ctx.send(f'Your ID is: `{member.id}`')
 
 def setup(bot):
     bot.add_cog(funny(bot))

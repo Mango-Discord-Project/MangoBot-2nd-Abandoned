@@ -14,7 +14,7 @@ with open('./setting/channels.json', mode='r', encoding='utf8') as cFile:
 class botsetting(Cog_Extension):
     @commands.is_owner()
     @commands.command()
-    async def Setup(self, ctx, setupType):
+    async def setguild(self, ctx, setupType):
         if setupType == 'channel':
             with open('./setting/channels.json', mode='r', encoding='utf8') as cFile:
                 cData = json.load(cFile)

@@ -1,5 +1,22 @@
 {
     "index": {
+        "808241076657717268": {
+            "log": {
+                "id": null,
+                "message": "{now} Bot is Ready",
+                "used": false
+            },
+            "member_join": {
+                "id": null,
+                "message": "{mmention} Join {guildname}",
+                "used": false
+            },
+            "member_remove": {
+                "id": null,
+                "message": "{mmention} leave {guildname}",
+                "used": false
+            }
+        },
         "849602955997216788": {
             "log": {
                 "id": null,

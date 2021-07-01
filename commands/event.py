@@ -23,10 +23,6 @@ class event(Cog_Extension):
     @commands.Cog.listener()
     async def on_ready(self):
         print(f'{MUT.now()} Bot is Ready')
-        for guild in self.bot.guilds:
-            if cData['index'][str(guild.id)]['log']['used']:
-                channel = self.bot.get_channel(cData[str(guild.id)]['log']['id'])
-                await channel.send()
     
     @commands.Cog.listener()
     async def on_member_join(self, member):
@@ -62,7 +58,7 @@ class event(Cog_Extension):
                 'used': False
                 }
             }
-        MUT.save('./settings/channel.json', data=cData)
+        save('channel', cData)
     
     @commands.Cog.listener()
     async def on_invite_delete(self, invite):

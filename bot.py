@@ -2,7 +2,6 @@ import discord
 import json
 import os
 from discord.ext import commands
-from datetime import datetime
 
 with open('./setting/Token.json') as TokenFile:
     TokenData = json.load(TokenFile)
@@ -10,10 +9,12 @@ with open('./setting/Token.json') as TokenFile:
 with open('./setting/botSetting.json') as SettingFile:
     SettingData = json.load(SettingFile)
 
-intents = discord.Intents.all()
 bot = commands.Bot(
-    command_prefix=SettingData['Prefix'], 
-    intents=intents
+    command_prefix = SettingData['Prefix'],
+    # help_command = 'sos',
+    # owner_ids = (467532880625664000),
+    strip_after_prefix = True,
+    intents = discord.Intents.all()
     )
 
 for Filename in os.listdir('./commands'):
