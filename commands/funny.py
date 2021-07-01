@@ -21,13 +21,13 @@ class funny(Cog_Extension):
         if member.id == ctx.author.id:
             await ctx.send('~~Don\'t be so self-absorbed, okay??~~')
             return
-        await ctx.send(f'{ctx.author.mention} 與 {member.mention} 的相性為 {randomInt(0, 100)}')
+        await ctx.send(f'The phase of {ctx.author.menu} and {member.menu} is {randomInt(0, 100)}')
     
     @random.command()
     async def lucky(self, ctx):
         luckyList = ['大吉', '中吉', '小吉', '吉', '半吉', '末吉', '末小吉', '凶', '小凶', '半凶', '末凶', '大凶']
         point = random.choice(luckyList)
-        await ctx.send(f'{ctx.author.mention} 抽到的籤是 `{point}`')
+        await ctx.send(f'{ctx.author.mention} The label drawn is `{point}`')
     
     @random.command()
     async def dice(self, ctx, times:str='1'):
